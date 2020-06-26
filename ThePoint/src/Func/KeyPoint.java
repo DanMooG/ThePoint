@@ -424,7 +424,9 @@ public class KeyPoint extends JFrame {
 					int result1 = JOptionPane.showConfirmDialog(null, "입력된 내용이 없습니다!\n입력하시겠습니까?", "입력여부 확인",
 							JOptionPane.YES_NO_OPTION);
 					if (result1 == JOptionPane.YES_OPTION) { // Yes
-						boolean result = pk_DAO.InputPoint(pk_DTO, txt_Input.getText());
+						String inputText = txt_Input.getText();
+						inputText = inputText.replaceAll(System.getProperty("line.separator"), "\n");
+						boolean result = pk_DAO.InputPoint(pk_DTO, inputText);
 						if (result == true) {
 							JOptionPane.showMessageDialog(null, "수정 되었습니다", "수정 완료", JOptionPane.WARNING_MESSAGE);
 							Reset();

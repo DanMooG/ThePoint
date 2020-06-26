@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import org.mariadb.jdbc.internal.failover.Listener;
 
 import DAO.M_Info_DAO;
 import DAO.P_KeyPoint_DAO;
@@ -532,8 +535,14 @@ public class ToFile extends JFrame {
 		btn_PDF.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("PDF");
-				// MakePDF mPDF = new MakePDF();
+				List<P_KeyPoint_DTO> val = GetPDFInfo();
+				
+				try {
+					MakePDF mPDF = new MakePDF(val);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
@@ -569,6 +578,30 @@ public class ToFile extends JFrame {
 		// dao에서 멤버 정보 가져오기
 		result = pk_DAO.GetAllStructure(str);
 
+		return result;
+	}
+	
+	//DB에서 범위 값 가져오기
+	public List<P_KeyPoint_DTO> GetPDFInfo(){
+		List<P_KeyPoint_DTO> result = null;
+		int[] startK = new int[5];
+		int[] endK = new int[5];
+		
+		startK[0] = com_1_start.getSelectedIndex()+1;
+		startK[1] = com_2_start.getSelectedIndex()+1;
+		startK[2] = com_3_start.getSelectedIndex()+1;
+		startK[3] = com_4_start.getSelectedIndex()+1;
+		startK[4] = com_5_start.getSelectedIndex()+1;
+		
+		endK[0] = com_1_end.getSelectedIndex()+1;
+		endK[1] = com_2_end.getSelectedIndex()+1;
+		endK[2] = com_3_end.getSelectedIndex()+1;
+		endK[3] = com_4_end.getSelectedIndex()+1;
+		endK[4] = com_5_end.getSelectedIndex()+1;
+				
+		pk_DAO = new P_KeyPoint_DAO();
+		result = pk_DAO.SearchData(startK, endK);
+		
 		return result;
 	}
 }

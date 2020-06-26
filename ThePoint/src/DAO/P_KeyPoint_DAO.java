@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.table.TableModel;
@@ -436,6 +438,69 @@ public class P_KeyPoint_DAO {
 					conn.close();
 				if (!pst.isClosed())
 					pst.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+
+		return result;
+	}
+
+	// 해당 데이터 검색
+	public List<P_KeyPoint_DTO> SearchData(int[] startK, int[] endK) {
+		List<P_KeyPoint_DTO> result = new ArrayList<P_KeyPoint_DTO>();
+		String sql = "";
+		Connection conn = null;
+		PreparedStatement pst = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConn();
+			sql = "SELECT * FROM p_keypoint"
+					+ " WHERE p_Kind1 BETWEEN ? AND ?"
+					+" AND p_Kind2 BETWEEN ? AND ?"
+					+" AND p_Kind3 BETWEEN ? AND ?"
+					+" AND p_Kind4 BETWEEN ? AND ?"
+					+" AND p_Kind5 BETWEEN ? AND ?;";
+
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, startK[0]);
+			pst.setInt(2, endK[0]);
+			pst.setInt(3, startK[1]);
+			pst.setInt(4, endK[1]);
+			pst.setInt(5, startK[2]);
+			pst.setInt(6, endK[2]);
+			pst.setInt(7, startK[3]);
+			pst.setInt(8, endK[3]);
+			pst.setInt(9, startK[4]);
+			pst.setInt(10, endK[4]);
+			rs = pst.executeQuery();
+
+			int i = 0;
+			while(rs.next()) {
+				P_KeyPoint_DTO row = new P_KeyPoint_DTO();
+				row.setP_Kind1(rs.getInt("p_Kind1"));
+				row.setP_Kind2(rs.getInt("p_Kind2"));
+				row.setP_Kind3(rs.getInt("p_Kind3"));
+				row.setP_Kind4(rs.getInt("p_Kind4"));
+				row.setP_Kind5(rs.getInt("p_Kind5"));
+				row.setP_Kind_Info(rs.getString("p_Kind_Info"));
+				row.setP_Point_Info(rs.getString("p_Point_Info"));
+				
+				result.add(row);
+				i++;
+			}
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!pst.isClosed())
+					pst.close();
+				if (!rs.isClosed())
+					rs.close();
 			} catch (Exception e) {
 				System.out.println(e);
 			}
