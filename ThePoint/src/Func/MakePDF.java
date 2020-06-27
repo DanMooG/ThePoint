@@ -8,25 +8,31 @@ import java.util.Vector;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 import DTO.P_KeyPoint_DTO;
 
 public class MakePDF {
-	
-	public static PDPageContentStream contentStream = null;
+
+	private static PDPageContentStream contentStream = null;
+	private static PDPage page = null;
+	private static PDDocument document = null;
+	private static InputStream fontStream = null;
+	private static PDType0Font fontNanum = null;
+
+	private static Vector<String> contents_v = null;
+
+	private static int x = 25, y = 760;
 
 	public MakePDF(List<P_KeyPoint_DTO> val) throws Exception {
 		// Create a document and add a page to it
-		PDDocument document = new PDDocument();
-		PDPage page = new PDPage();
+		document = new PDDocument();
+		page = new PDPage();
 		document.addPage(page);
 
 		// Create a new font object selecting one of the PDF base fonts
-		InputStream fontStream = new FileInputStream("fonts/NanumGothic.ttf");
-		PDType0Font fontNanum = PDType0Font.load(document, fontStream);
+		fontStream = new FileInputStream("fonts/malgun.ttf");
+		fontNanum = PDType0Font.load(document, fontStream);
 
 		// Start a new content steam which will "hold" the to be created content
 		contentStream = new PDPageContentStream(document, page);
@@ -36,11 +42,9 @@ public class MakePDF {
 		contentStream.beginText();
 		contentStream.setFont(fontNanum, 12);
 
-		int x = 25, y = 760;
-		contentStream.newLineAtOffset(x, y);
+		contents_v = new Vector<String>();
 		for (int i = 0; i < val.size(); i++) {
 			String contents = new String();
-			contentStream.setLeading(15f);
 
 			// 목차
 			int[] kind = new int[5];
@@ -56,46 +60,58 @@ public class MakePDF {
 
 			// 목차 그리기
 			contents += val.get(i).getP_Kind_Info();
-			contentStream.drawString(contents);
-			contentStream.newLine();
+			contents_v.add(contents);
 
-			//앞 여백
+			// 앞 여백
 			contents = makeSpace(kind);
-			
+
 			// 내용
 			if (val.get(i).getP_Point_Info() != null) {
 				String[] point = val.get(i).getP_Point_Info().split("\n");
 				for (int j = 0; j < point.length; j++) {
 					if (point[j].length() > 54) {
 						int num = point[j].length() / 54;
-						for(int k = 0; k < num; k++) {
-							//앞 여백
+						for (int k = 0; k < num; k++) {
+							// 앞 여백
 							contents = makeSpace(kind);
-							contents += point[k].substring(55*j, (55*j)+54);
-							contentStream.drawString(contents);
-							contentStream.setLeading(15f);
-							contentStream.newLine();
+							contents += point[k].substring(55 * j, (55 * j) + 54);
+							contents_v.add(contents);
 						}
-						
-						//앞 여백
+
+						// 앞 여백
 						contents = makeSpace(kind);
-						contents += point[j].substring(55*num, point[j].length());
-						contentStream.drawString(contents);
-						contentStream.newLine();
-						contentStream.setLeading(10f);
-						contentStream.newLine();
+						contents += point[j].substring(55 * num, point[j].length());
+						contents_v.add(contents);
 					} else {
-						//앞 여백
+						// 앞 여백
 						contents = makeSpace(kind);
 						contents += point[j];
-						contentStream.drawString(contents);
-						contentStream.newLine();
-						contentStream.setLeading(10f);
-						contentStream.newLine();
+						contents_v.add(contents);
 					}
 				}
+				contents_v.add(" ");
 			} else {
-				contentStream.setLeading(10f);
+				contents_v.add(" ");
+			}
+		}
+
+		contentStream.newLineAtOffset(x, y);
+		contentStream.setLeading(15f);
+		for (int i = 0; i < contents_v.size(); i++) {
+			if ((i != 0) && (i % 50) == 0) {
+				contentStream.endText();
+				contentStream.close();
+				
+				page = new PDPage();
+				document.addPage(page);
+				contentStream = new PDPageContentStream(document, page);
+				contentStream.beginText();
+				contentStream.setFont(fontNanum, 12);
+				
+				contentStream.newLineAtOffset(x, y);
+				contentStream.setLeading(15f);
+			} else {
+				contentStream.drawString(contents_v.get(i));
 				contentStream.newLine();
 			}
 		}
