@@ -154,7 +154,7 @@ public class KeyPoint extends JFrame {
 		setIconImage(BarIcon.getImage()); // 좌측 상단이랑 작업 표시줄 아이콘 설정
 		panel.setBackground(new java.awt.Color(240, 240, 242)); // 뒤에 배경 블랙
 		setLayout(null); // 판을 다시 짠다
-		
+
 		/** 메세지박스 UI **/
 		UIManager UI = new UIManager();
 		UI.put("OptionPane.background", new java.awt.Color(119, 150, 242));
@@ -418,14 +418,13 @@ public class KeyPoint extends JFrame {
 		btn_Input.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(pk_DTO.getP_Kind1() == 0) {
+				if (pk_DTO.getP_Kind1() == 0) {
 					JOptionPane.showMessageDialog(null, "먼저 검색을 해주세요!", "오류", JOptionPane.WARNING_MESSAGE);
 				} else if (txt_Input.getText().equals("") || txt_Input.getText() == null) {
 					int result1 = JOptionPane.showConfirmDialog(null, "입력된 내용이 없습니다!\n입력하시겠습니까?", "입력여부 확인",
 							JOptionPane.YES_NO_OPTION);
 					if (result1 == JOptionPane.YES_OPTION) { // Yes
-						String inputText = txt_Input.getText();
-						inputText = inputText.replaceAll(System.getProperty("line.separator"), "\n");
+						String inputText = StringReplace(txt_Input.getText());
 						boolean result = pk_DAO.InputPoint(pk_DTO, inputText);
 						if (result == true) {
 							JOptionPane.showMessageDialog(null, "수정 되었습니다", "수정 완료", JOptionPane.WARNING_MESSAGE);
@@ -437,7 +436,8 @@ public class KeyPoint extends JFrame {
 						JOptionPane.showMessageDialog(null, "취소되었습니다", "취소", JOptionPane.WARNING_MESSAGE);
 					}
 				} else {
-					boolean result = pk_DAO.InputPoint(pk_DTO, txt_Input.getText());
+					String inputText = StringReplace(txt_Input.getText());
+					boolean result = pk_DAO.InputPoint(pk_DTO, inputText);
 					if (result == true) {
 						JOptionPane.showMessageDialog(null, "수정 되었습니다", "수정 완료", JOptionPane.WARNING_MESSAGE);
 						Reset();
@@ -449,6 +449,30 @@ public class KeyPoint extends JFrame {
 		});
 
 		panel.add(btn_Input);
+
+		/* 내용 입력 시 유의사항 */
+		label = new JLabel("※!!특수문자는 키보드에 있는 문자나※");
+		label.setFont(font_PS);
+		label.setForeground(Color.BLACK);
+		label.setBounds(width / 2 - (width - (btn_W * 2 + 50)) / 2, (txt_Input.getY() + txt_Input.getHeight()) + 5,
+				width - (btn_W * 2 + 50), btn_W / 5);
+		label.setOpaque(true);
+		label.setVerticalAlignment(SwingConstants.CENTER);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+
+		panel.add(label);
+		
+		/* 내용 입력 시 유의사항 */
+		label = new JLabel("※!!\'ㄱ ~ ㅎ, ㄲ, ㄸ, ㅃ\'+한자에 있는 특수문자만 가능합니다!!※");
+		label.setFont(font_PS);
+		label.setForeground(Color.BLACK);
+		label.setBounds(width / 2 - (width - (btn_W * 2 + 50)) / 2, (txt_Input.getY() + txt_Input.getHeight()) + btn_W/5+5,
+				width - (btn_W * 2 + 50), btn_W / 5);
+		label.setOpaque(true);
+		label.setVerticalAlignment(SwingConstants.CENTER);
+		label.setHorizontalAlignment(SwingConstants.CENTER);
+
+		panel.add(label);
 
 		/* 초기화 버튼 */
 		btn_Reset = new JButton(btnReset);
@@ -506,5 +530,32 @@ public class KeyPoint extends JFrame {
 		MainScreen ms = new MainScreen();
 		ms.setVisible(true);
 		dispose();
+	}
+
+	// 특수문자 체크
+	public static String StringReplace(String str) {
+		String match = "[^\uAC00-\uD7A3xfe0-9a-zA-Z\\s]";
+		match += "！ ＇ ， ． ／ ： ； ？ ＾ ＿ ｀ ｜ ￣ 、 。 · ‥ … ¨ 〃­ ― ∥ ＼ ∼ ´ ～ ˇ ˘ ˝ ˚ ˙ ¸ ˛ ¡ ¿ ː "
+				+"Æ Ð Ħ Ĳ Ŀ Ł Ø Œ Þ Ŧ Ŋ æ đ ð Ł Ø ĳ ĸ ŀ ł ø œ ß þ ŧ ŋ ŉ"
+				+"＄ ％ ￦ Ｆ ′ ″ ℃ Å ￠ ￡ ￥ ¤ ℉ ‰ ?? ㎕ ㎖ ㎗ ℓ ㎘ ㏄ ㎣ ㎤ ㎥ ㎦ ㎙ ㎚ ㎛ ㎜ ㎝ ㎞ ㎟ ㎠ ㎡ ㎙㏊"
+				+"㎍ ㎎ ㎏ ㏏ ㎈ ㎉ ㏈ ㎧ ㎨ ㎰ ㎱ ㎲ ㎳ ㎴ ㎵ ㎶ ㎷ ㎸ ㎹ ㎀ ㎁ ㎂ ㎃ ㎄ ㎺ ㎻ ㎼ ㎽ ㎾ ㎿ ㎐ ㎑ ㎒ ㎓ ㎔ Ω"
+				+"㏀ ㏁ ㎊ ㎋ ㎌ ㏖ ㏅ ㎭ ㎮ ㎯ ㏛ ㎩ ㎪ ㎫ ㎬ ㏝ ㏐ ㏓ ㏃ ㏉ ㏜ ㏆" 
+				+"＃ ＆ ＊ ＠ § ※ ☆ ★ ○ ● ◎ ◇ ◆ □ ■ △ ▲ ▽ ▼ → ← ↑ ↓ ↔ 〓 ◁ ◀ ▷ ▶ ♤ ♠ ♡ ♥ ♧ ♣ ⊙ ◈ ▣ ◐ ◑ ▒ ▤ ▥ ▨ ▧ ▦ ▩"
+				+" ♨ ☏ ☎ ☜ ☞ ¶ † ‡ ↕ ↗ ↙ ↖ ↘ ♭ ♩ ♪ ♬ ㉿ ㈜ № ㏇ ™ ㏂ ㏘ ℡ ?? ª º" 
+				+"─ │ ┌ ┐ ┘ └ ├ ┬ ┤ ┴ ┼ ━ ┃ ┏ ┓ ┛ ┗ ┣ ┳ ┫ ┻ ╋ ┠ ┯ ┨ ┷ ┿ ┝ ┰ ┥ ┸ ╂ ┒ ┑ ┚ ┙ ┖ ┕"
+				+"┎ ┍ ┞ ┟ ┡ ┢ ┦ ┧ ┩ ┪ ┭ ┮ ┱ ┲ ┵ ┶ ┹ ┺ ┽ ┾ ╀ ╁ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊" 
+				+"ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ"
+				+"パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ" 
+				+"㉠ ㉡ ㉢ ㉣ ㉭ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ ㉮ ㉯ ㉰ ㉱ ㉲ ㉳ ㉴ ㉵ ㉶ ㉷ ㉸ ㉹ ㉺ ㉻"
+				+"㈀ ㈁ ㈂ ㈃ ㈄ ㈅ ㈆ ㈇ ㈈ ㈉ ㈊ ㈋ ㈌ ㈍ ㈎ ㈏ ㈐ ㈑ ㈒ ㈓ ㈔ ㈕ ㈖ ㈗ ㈘ ㈙ ㈚ ㈛"
+				+"А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я а б"
+				+"в г д е ё ж з и й к л м н о п р с т ф х ц ч ш щ ъ ы ы ь э ю я" 
+				+"ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓖ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮"
+				+" ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵ ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂" 
+				+"０ １ ２ ３ ４ ５ ６ ７ ８ ９ ⅰ ⅱ ⅲ ⅳ ⅴ ⅵ ⅶ ⅷ ⅸ ⅹ Ⅰ Ⅱ Ⅲ Ⅳ Ⅴ Ⅵ Ⅶ Ⅷ Ⅸ Ⅹ\r\n" 
+				+"½ ⅓ ⅔ ¼ ¾ ⅛ ⅜ ⅝ ⅞ ¹ ² ³ ⁴ ⁿ ₁ ₂ ₃ ₄"
+				+"Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ σ τ υ φ χ ψ ω";
+		str = str.replaceAll(match, "");
+		return str;
 	}
 }
