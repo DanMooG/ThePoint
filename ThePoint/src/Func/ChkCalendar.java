@@ -143,7 +143,7 @@ public class ChkCalendar extends JFrame {
 	private static int[] LEAP_MAX_DAYS = new int[] { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static Date today = new Date();
 	int thisyear = today.getYear() + 1900;
-	int thismonth = today.getMonth() + 1;
+	int thismonth = 7 + 1;
 
 	//////////////////////////////////////////////////////////////////////////////////////
 
@@ -307,19 +307,24 @@ public class ChkCalendar extends JFrame {
 			days[i].setBorderPainted(false);
 			days[i].setFocusPainted(false);
 			days[i].setContentAreaFilled(false);
-			days[i].setBounds(lbl_sun.getX(), (lbl_sun.getY() + lbl_sun.getHeight()) + 10, day_W, back_H);
+			if(i == 0) {
+				days[i].setBounds(lbl_sun.getX(), (lbl_sun.getY() + lbl_sun.getHeight()) + 10, day_W, back_H);
+			} else {
+				days[i].setBounds((days[i - 1].getX() + days[i - 1].getWidth()) + 10, days[i - 1].getY(), day_W, back_H);
+			}
 			add(days[i]);
 		}
 
 		// 첫 줄 출력
+		int icon_num = 0;
 		int count = 7 - weekday;
-		int delim = count < 7 ? count : 0;
 		state = c_DAO.GetState();
-		for (int i = 1; i <= count; i++) {
+		for (int i = weekday; i < 7; i++, icon_num++) {
 			final int j = i-1;
-			if(state[i-1].equals("N")) {
-				days[i] = new JButton(days_icon[i - 1]);
-			} else if(state[i-1].equals("O")) {
+			final int icn = icon_num;
+			if(state[icon_num].equals("N")) {
+				days[i] = new JButton(days_icon[icon_num]);
+			} else if(state[icon_num].equals("O")) {
 				days[i] = new JButton(day_O);
 			} else {
 				days[i] = new JButton(day_X);
@@ -331,17 +336,18 @@ public class ChkCalendar extends JFrame {
 			days[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					state = c_DAO.GetState();
+					Reset();
 					
-					if (state[j].equals("N")) {
-						c_DAO.ChangeState(j+1, "O");
-						days[j+1].setIcon(day_O);
-					} else if (state[j].equals("O")) {
-						c_DAO.ChangeState(j+1, "X");
-						days[j+1].setIcon(day_X);
+					state = c_DAO.GetState();
+					if (state[icn].equals("N")) {
+						c_DAO.ChangeState((icn+1), "O");
+						days[(j+1)].setIcon(day_O);
+					} else if (state[icn].equals("O")) {
+						c_DAO.ChangeState((icn+1), "X");
+						days[(j+1)].setIcon(day_X);
 					} else {
-						c_DAO.ChangeState(j+1, "N");
-						days[j+1].setIcon(days_icon[j]);
+						c_DAO.ChangeState((icn+1), "N");
+						days[(j+1)].setIcon(days_icon[icn]);
 					}
 				}
 			});
@@ -349,13 +355,15 @@ public class ChkCalendar extends JFrame {
 		}
 		count++;
 
+		final int cnt = count;
 		// 둘째줄부터 출력
-		for (int i = count; i < maxDay; i++) {
+		for (int i = 7; i <= maxDay+(weekday-1); i++, icon_num++) {
 			final int j = i-1;
+			final int icn = icon_num;
 			int k = 1;
-			if(state[i-1].equals("N")) {
-				days[i] = new JButton(days_icon[i - 1]);
-			} else if(state[i-1].equals("O")) {
+			if(state[icon_num].equals("N")) {
+				days[i] = new JButton(days_icon[icon_num]);
+			} else if(state[icon_num].equals("O")) {
 				days[i] = new JButton(day_O);
 			} else {
 				days[i] = new JButton(day_X);
@@ -363,31 +371,33 @@ public class ChkCalendar extends JFrame {
 			days[i].setBorderPainted(false);
 			days[i].setFocusPainted(false);
 			days[i].setContentAreaFilled(false);
-			days[i].setBounds(days[i-7*k].getX(), days[i-7*k].getY()+(back_H+10)*k, day_W, back_H);
+			days[i].setBounds(days[i-7].getX(), days[i-7].getY()+(back_H+10)*k, day_W, back_H);
 			days[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					state = c_DAO.GetState();
+					Reset();
 					
-					if (state[j].equals("N")) {
-						c_DAO.ChangeState(j+1, "O");
-						days[j+1].setIcon(day_O);
-					} else if (state[j].equals("O")) {
-						c_DAO.ChangeState(j+1, "X");
-						days[j+1].setIcon(day_X);
+					state = c_DAO.GetState();
+					if (state[icn].equals("N")) {
+						c_DAO.ChangeState((icn+1), "O");
+						days[(j+1)].setIcon(day_O);
+					} else if (state[icn].equals("O")) {
+						c_DAO.ChangeState((icn+1), "X");
+						days[(j+1)].setIcon(day_X);
 					} else {
-						c_DAO.ChangeState(j+1, "N");
-						days[j+1].setIcon(days_icon[j]);
+						c_DAO.ChangeState((icn+1), "N");
+						days[(j+1)].setIcon(days_icon[icn]);
 					}
 				}
 			});
 			add(days[i]);
-			if (i % 7 == delim) {
+			if (i % 7 == 6) {
 				++k;
 			}
 		}
+		
 		// 요일 공백 출력
-		for (int i = maxDay; i < 35; i++) {
+		for (int i = maxDay+weekday; i < 35; i++) {
 			days[i] = new JButton(day_none);
 			days[i].setBorderPainted(false);
 			days[i].setFocusPainted(false);
@@ -407,6 +417,8 @@ public class ChkCalendar extends JFrame {
 	}
 	
 	public void Reset() {
+		for(int i = 0; i < days.length; i++)
+			remove(days[i]);
 		printCalendar(thisyear, thismonth);
 	}
 }
