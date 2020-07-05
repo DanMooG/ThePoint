@@ -35,7 +35,7 @@ public class ChkCalendar extends JFrame {
 	private int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	private int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	private int width = x * 3 / 4, height = y * 4 / 5;
-	private int day_W = (width - 80) / 7, back_H = ((height - (80 + height / 15)) / 6)*5/6, day_H = back_H*6/5 - 50;
+	private int day_W = (width - 80) / 7, back_H = (height - (80 + height / 15)) / 6, day_H = back_H - 50;
 
 	// ±× ¿Ü¿¡
 	private String state[] = new String[31];

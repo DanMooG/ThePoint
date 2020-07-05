@@ -35,7 +35,7 @@ public class ChkCalendar extends JFrame {
 	private int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 	private int y = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
 	private int width = x * 3 / 4, height = y * 4 / 5;
-	private int day_W = (width - 80) / 7, back_H = ((height - (80 + height / 15)) / 6)*5/6, day_H = back_H*6/5 - 50;
+	private int day_W = (width - 80) / 7, back_H = (height - (80 + height / 15)) / 6, day_H = back_H - 50;
 
 	// 그 외에
 	private String state[] = new String[31];
@@ -287,7 +287,7 @@ public class ChkCalendar extends JFrame {
 		int maxDay = getMaxDayOfMonth(year, month);
 		c_DAO = new Calendar_DAO();
 
-		days = new JButton[42];
+		days = new JButton[35];
 		days_icon1 = new ImageIcon[maxDay];
 		imgdays = new Image[maxDay];
 		imgdays2 = new Image[maxDay];
@@ -397,7 +397,7 @@ public class ChkCalendar extends JFrame {
 		}
 		
 		// 요일 공백 출력
-		for (int i = maxDay+weekday; i < 42; i++) {
+		for (int i = maxDay+weekday; i < 35; i++) {
 			days[i] = new JButton(day_none);
 			days[i].setBorderPainted(false);
 			days[i].setFocusPainted(false);
