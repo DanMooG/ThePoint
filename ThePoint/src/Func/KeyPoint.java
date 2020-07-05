@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -38,6 +39,7 @@ public class KeyPoint extends JFrame {
 	private JLabel label, lbl_back1, lbl_1, lbl_2, lbl_3, lbl_4, lbl_5;
 	private JComboBox com_1, com_2, com_3, com_4, com_5;
 	private JTextArea txt_Input;
+	private JScrollPane scroll;
 
 	// 크기 조절
 	private int x = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
@@ -400,13 +402,16 @@ public class KeyPoint extends JFrame {
 
 		/* 내용 입력 */
 		txt_Input = new JTextArea();
-		txt_Input.setBounds(lbl_back1.getX(), (lbl_back1.getY() + lbl_back1.getHeight()) + 10, lbl_back1.getWidth(),
-				height - ((lbl_back1.getHeight() + label.getHeight()) * 2 + 20));
 		txt_Input.setFont(font_PS);
 		txt_Input.setLineWrap(true);
 		txt_Input.setBorder(new LineBorder(new java.awt.Color(167, 186, 242), 5));
 
-		add(txt_Input);
+		scroll = new JScrollPane(txt_Input);
+		scroll.setViewportView(txt_Input);
+		scroll.setBounds(lbl_back1.getX(), (lbl_back1.getY() + lbl_back1.getHeight()) + 10, lbl_back1.getWidth(),
+				height - ((lbl_back1.getHeight() + label.getHeight()) * 2 + 20));
+
+		panel.add(scroll); // 스크롤 추가
 
 		/* 입력 버튼 */
 		btn_Input = new JButton(btnInput);
@@ -415,7 +420,7 @@ public class KeyPoint extends JFrame {
 		btn_Input.setBorderPainted(false);
 		btn_Input.setFocusPainted(false);
 		btn_Input.setContentAreaFilled(false);
-		btn_Input.setBounds(txt_Input.getX(), (txt_Input.getY() + txt_Input.getHeight() + 7), btn_W, btn_H);
+		btn_Input.setBounds(scroll.getX(), (scroll.getY() + scroll.getHeight() + 7), btn_W, btn_H);
 		btn_Input.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -455,7 +460,7 @@ public class KeyPoint extends JFrame {
 		label = new JLabel("※!!특수문자는 키보드에 있는 문자나※");
 		label.setFont(font_PS);
 		label.setForeground(Color.BLACK);
-		label.setBounds(width / 2 - (width - (btn_W * 2 + 50)) / 2, (txt_Input.getY() + txt_Input.getHeight()) + 5,
+		label.setBounds(width / 2 - (width - (btn_W * 2 + 50)) / 2, (scroll.getY() + scroll.getHeight()) + 5,
 				width - (btn_W * 2 + 50), btn_W / 5);
 		label.setOpaque(true);
 		label.setVerticalAlignment(SwingConstants.CENTER);
@@ -467,7 +472,7 @@ public class KeyPoint extends JFrame {
 		label = new JLabel("※!!\'ㄱ ~ ㅎ, ㄲ, ㄸ, ㅃ\'+한자에 있는 특수문자만 가능합니다!!※");
 		label.setFont(font_PS);
 		label.setForeground(Color.BLACK);
-		label.setBounds(width / 2 - (width - (btn_W * 2 + 50)) / 2, (txt_Input.getY() + txt_Input.getHeight()) + btn_W/5+5,
+		label.setBounds(width / 2 - (width - (btn_W * 2 + 50)) / 2, (scroll.getY() + scroll.getHeight()) + btn_W/5+5,
 				width - (btn_W * 2 + 50), btn_W / 5);
 		label.setOpaque(true);
 		label.setVerticalAlignment(SwingConstants.CENTER);
@@ -482,7 +487,7 @@ public class KeyPoint extends JFrame {
 		btn_Reset.setBorderPainted(false);
 		btn_Reset.setFocusPainted(false);
 		btn_Reset.setContentAreaFilled(false);
-		btn_Reset.setBounds(width - (txt_Input.getX() + btn_W + 5), (txt_Input.getY() + txt_Input.getHeight() + 7),
+		btn_Reset.setBounds(width - (scroll.getX() + btn_W + 5), (scroll.getY() + scroll.getHeight() + 7),
 				btn_W, btn_H);
 		btn_Reset.addActionListener(new ActionListener() {
 			@Override

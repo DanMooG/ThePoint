@@ -235,7 +235,7 @@ public class P_KeyPoint_DAO {
 	}
 
 	// 자리 마련
-	public void MakeSpace(int k1, int k2, int k3, int k4, int k5) {
+	public void MakeSpace(int k1, int k2, int k3, int k4, int k5, int num) {
 		String sql = "";
 		Connection conn = null;
 		PreparedStatement pst = null;
@@ -244,27 +244,52 @@ public class P_KeyPoint_DAO {
 		try {
 			conn = getConn();
 			sql = "UPDATE P_KeyPoint SET ";
-			if ((k1 != 0) && (k2 == 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
-				sql += "p_kind1 = p_kind1 + 1";
-			} else if ((k1 != 0) && (k2 != 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
-				sql += "p_kind1 = p_kind1 + 1 and p_kind2 = p_kind2 + 1";
-			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 == 0) && (k5 == 0)) {
-				sql += "p_kind1 = p_kind1 + 1 and p_kind2 = p_kind2 + 1 and p_kind3 = p_kind3 + 1";
-			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 != 0) && (k5 == 0)) {
-				sql += "p_kind1 = p_kind1 + 1 and p_kind2 = p_kind2 + 1 and p_kind3 = p_kind3 + 1 and p_kind4 = p_kind4 + 1";
-			} else {
-				sql += "p_kind1 = p_kind1 + 1 and p_kind2 = p_kind2 + 1 and p_kind3 = p_kind3 + 1 and p_kind4 = p_kind4 + 1 and p_kind5 = p_kind5 + 1";
-			}
-			sql += " WHERE p_kind1 >= ? and p_kind2 >= ? and p_kind3 >= ? and p_kind4 >= ? and p_kind5 >= ?";
-			sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc, p_kind5 desc;";
+			if (num==1) {
+				sql += "p_kind1 = p_kind1 + 1 WHERE p_kind1 >= ?";
+				sql += " ORDER BY p_kind1 desc";
 
-			pst = conn.prepareStatement(sql);
-			pst.setInt(1, k1);
-			pst.setInt(2, k2);
-			pst.setInt(3, k3);
-			pst.setInt(4, k4);
-			pst.setInt(5, k5);
-			rs = pst.executeUpdate();
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				rs = pst.executeUpdate();
+			} else if (num==2) {
+				sql += "p_kind2 = p_kind2 + 1 WHERE p_kind1 like ? and p_kind2 >= ?";
+				sql += " ORDER BY p_kind1 desc, p_kind2 desc";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				rs = pst.executeUpdate();
+			} else if (num==3) {
+				sql += "p_kind2 = p_kind2 + 1 WHERE p_kind1 like ? and p_kind2 like ? and p_kind3 >= ?";
+				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc;";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				rs = pst.executeUpdate();
+			} else if (num==4) {
+				sql += "p_kind2 = p_kind2 + 1 WHERE p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 >= ?";
+				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc;";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				pst.setInt(4, k4);
+				rs = pst.executeUpdate();
+			} else {
+				sql += "p_kind2 = p_kind2 + 1 WHERE p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ? and p_kind5 >= ?";
+				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc, p_kind5 desc;";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				pst.setInt(4, k4);
+				pst.setInt(5, k5);
+				rs = pst.executeUpdate();
+			}
 
 		} catch (Exception e) {
 			System.out.println(e);
@@ -372,31 +397,55 @@ public class P_KeyPoint_DAO {
 		PreparedStatement pst = null;
 		int rs = 0;
 
-		System.out.println(k1 + "-" + k2 + "-" + k3 + "-" + k4 + "-" + k5);
 		try {
 			conn = getConn();
 			sql = "UPDATE P_KeyPoint SET ";
 			if ((k1 != 0) && (k2 == 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
 				sql += "p_kind1 = p_kind1 - 1";
+				sql += " WHERE p_kind1 > ?";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				rs = pst.executeUpdate();
 			} else if ((k1 != 0) && (k2 != 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
-				sql += "p_kind1 = p_kind1 - 1 and p_kind2 = p_kind2 - 1";
+				sql += "p_kind2 = p_kind2 - 1";
+				sql += " WHERE p_kind1 like ? and p_kind2 > ?";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				rs = pst.executeUpdate();
 			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 == 0) && (k5 == 0)) {
-				sql += "p_kind1 = p_kind1 - 1 and p_kind2 = p_kind2 - 1 and p_kind3 = p_kind3 - 1";
+				sql += "p_kind3 = p_kind3 - 1";
+				sql += " WHERE p_kind1 like ? and p_kind2 like ? and p_kind3 > ?";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				rs = pst.executeUpdate();
 			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 != 0) && (k5 == 0)) {
-				sql += "p_kind1 = p_kind1 - 1 and p_kind2 = p_kind2 - 1 and p_kind3 = p_kind3 - 1 and p_kind4 = p_kind4 - 1";
+				sql += "p_kind4 = p_kind4 - 1";
+				sql += " WHERE p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 > ?";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				pst.setInt(4, k4);
+				rs = pst.executeUpdate();
 			} else {
-				sql += "p_kind1 = p_kind1 - 1 and p_kind2 = p_kind2 - 1 and p_kind3 = p_kind3 - 1 and p_kind4 = p_kind4 - 1 and p_kind5 = p_kind5 - 1";
+				sql += "p_kind5 = p_kind5 - 1";
+				sql += " WHERE p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ? and p_kind5 > ?";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				pst.setInt(4, k4);
+				pst.setInt(5, k5);
+				rs = pst.executeUpdate();
 			}
-			sql += " WHERE p_kind1 >= ? and p_kind2 >= ? and p_kind3 >= ? and p_kind4 >= ? and p_kind5 >= ?;";
-
-			pst = conn.prepareStatement(sql);
-			pst.setInt(1, k1);
-			pst.setInt(2, k2);
-			pst.setInt(3, k3);
-			pst.setInt(4, k4);
-			pst.setInt(5, k5);
-			rs = pst.executeUpdate();
-
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
@@ -423,20 +472,21 @@ public class P_KeyPoint_DAO {
 			conn = getConn();
 			sql = "delete from p_KeyPoint where ";
 			if ((k1 != 0) && (k2 == 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
-				sql += "p_kind1 like ?;";
+				sql += "p_kind1 like ?";
 
 				pst = conn.prepareStatement(sql);
 				pst.setInt(1, k1);
 				rs = pst.executeUpdate();
 			} else if ((k1 != 0) && (k2 != 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
-				sql += "p_kind1 like ? and p_kind2 like ?;";
+				sql += "p_kind1 like ? and p_kind2 like ?";
 
 				pst = conn.prepareStatement(sql);
 				pst.setInt(1, k1);
 				pst.setInt(2, k2);
 				rs = pst.executeUpdate();
 			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 == 0) && (k5 == 0)) {
-				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ?;";
+				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ?";
+				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc;";
 
 				pst = conn.prepareStatement(sql);
 				pst.setInt(1, k1);
@@ -444,8 +494,9 @@ public class P_KeyPoint_DAO {
 				pst.setInt(3, k3);
 				rs = pst.executeUpdate();
 			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 != 0) && (k5 == 0)) {
-				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ?;";
-
+				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ?";
+				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc;";
+				
 				pst = conn.prepareStatement(sql);
 				pst.setInt(1, k1);
 				pst.setInt(2, k2);
@@ -453,8 +504,9 @@ public class P_KeyPoint_DAO {
 				pst.setInt(4, k4);
 				rs = pst.executeUpdate();
 			} else {
-				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ? and p_kind5 like ?;";
-
+				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ? and p_kind5 like ?";
+				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc, p_kind5;";
+				
 				pst = conn.prepareStatement(sql);
 				pst.setInt(1, k1);
 				pst.setInt(2, k2);
