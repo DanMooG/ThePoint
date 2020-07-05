@@ -40,59 +40,59 @@ public class MainScreen extends JFrame {
 	private Font font_PSS = new Font("맑은 고딕", Font.PLAIN, 10 + y / 250);
 
 	// 이미지
-	private ImageIcon BarIcon = new ImageIcon("images/icon.png");
+	private ImageIcon BarIcon = new ImageIcon("./images/icon.png");
 
 	/* 목차 버튼 */
-	private ImageIcon btnStruct1 = new ImageIcon("images/button/btnstruct.png");
+	private ImageIcon btnStruct1 = new ImageIcon("./images/button/btnstruct.png");
 	private Image imgbtnStruct = btnStruct1.getImage();
 	private Image imgbtnStruct2 = imgbtnStruct.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnStruct = new ImageIcon(imgbtnStruct2);
 
-	private ImageIcon btnStruct_push1 = new ImageIcon("images/pushedbutton/btnstruct_push.png");
+	private ImageIcon btnStruct_push1 = new ImageIcon("./images/pushedbutton/btnstruct_push.png");
 	private Image imgbtnStruct_push = btnStruct_push1.getImage();
 	private Image imgbtnStruct_push2 = imgbtnStruct_push.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnStruct_push = new ImageIcon(imgbtnStruct_push2);
 
 	/* 핵심 버튼 */
-	private ImageIcon btnPoint1 = new ImageIcon("images/button/btnpoint.png");
+	private ImageIcon btnPoint1 = new ImageIcon("./images/button/btnpoint.png");
 	private Image imgbtnPoint = btnPoint1.getImage();
 	private Image imgbtnPoint2 = imgbtnPoint.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnPoint = new ImageIcon(imgbtnPoint2);
 
-	private ImageIcon btnPoint_push1 = new ImageIcon("images/pushedbutton/btnpoint_push.png");
+	private ImageIcon btnPoint_push1 = new ImageIcon("./images/pushedbutton/btnpoint_push.png");
 	private Image imgbtnPoint_push = btnPoint_push1.getImage();
 	private Image imgbtnPoint_push2 = imgbtnPoint_push.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnPoint_push = new ImageIcon(imgbtnPoint_push2);
 
 	/* 캘린더 버튼 */
-	private ImageIcon btnCalendar1 = new ImageIcon("images/button/btncalendar.png");
+	private ImageIcon btnCalendar1 = new ImageIcon("./images/button/btncalendar.png");
 	private Image imgbtnCalendar = btnCalendar1.getImage();
 	private Image imgbtnCalendar2 = imgbtnCalendar.getScaledInstance(btn_W, btn_SH, Image.SCALE_SMOOTH);
 	private ImageIcon btnCalendar = new ImageIcon(imgbtnCalendar2);
 
-	private ImageIcon btnCalendar_push1 = new ImageIcon("images/pushedbutton/btncalendar_push.png");
+	private ImageIcon btnCalendar_push1 = new ImageIcon("./images/pushedbutton/btncalendar_push.png");
 	private Image imgbtnCalendar_push = btnCalendar_push1.getImage();
 	private Image imgbtnCalendar_push2 = imgbtnCalendar_push.getScaledInstance(btn_W, btn_SH, Image.SCALE_SMOOTH);
 	private ImageIcon btnCalendar_push = new ImageIcon(imgbtnCalendar_push2);
 
 	/* 정보수정 버튼 */
-	private ImageIcon btnInfo1 = new ImageIcon("images/button/btninfo.png");
+	private ImageIcon btnInfo1 = new ImageIcon("./images/button/btninfo.png");
 	private Image imgbtnInfo = btnInfo1.getImage();
 	private Image imgbtnInfo2 = imgbtnInfo.getScaledInstance(btn_W, btn_SH, Image.SCALE_SMOOTH);
 	private ImageIcon btnInfo = new ImageIcon(imgbtnInfo2);
 
-	private ImageIcon btnInfo_push1 = new ImageIcon("images/pushedbutton/btninfo_push.png");
+	private ImageIcon btnInfo_push1 = new ImageIcon("./images/pushedbutton/btninfo_push.png");
 	private Image imgbtnInfo_push = btnInfo_push1.getImage();
 	private Image imgbtnInfo_push2 = imgbtnInfo_push.getScaledInstance(btn_W, btn_SH, Image.SCALE_SMOOTH);
 	private ImageIcon btnInfo_push = new ImageIcon(imgbtnInfo_push2);
 
 	/* 파일 버튼 */
-	private ImageIcon btnFile1 = new ImageIcon("images/button/btnfile.png");
+	private ImageIcon btnFile1 = new ImageIcon("./images/button/btnfile.png");
 	private Image imgbtnFile = btnFile1.getImage();
 	private Image imgbtnFile2 = imgbtnFile.getScaledInstance(btn_W, btn_SH, Image.SCALE_SMOOTH);
 	private ImageIcon btnFile = new ImageIcon(imgbtnFile2);
 
-	private ImageIcon btnFile_push1 = new ImageIcon("images/pushedbutton/btnfile_push.png");
+	private ImageIcon btnFile_push1 = new ImageIcon("./images/pushedbutton/btnfile_push.png");
 	private Image imgbtnFile_push = btnFile_push1.getImage();
 	private Image imgbtnFile_push2 = imgbtnFile_push.getScaledInstance(btn_W, btn_SH, Image.SCALE_SMOOTH);
 	private ImageIcon btnFile_push = new ImageIcon(imgbtnFile_push2);

@@ -43,7 +43,7 @@ public class MakePDF {
 			document.addPage(page);
 
 			// Create a new font object selecting one of the PDF base fonts
-			fontStream = new FileInputStream("fonts/malgun.ttf");
+			fontStream = new FileInputStream("./fonts/malgun.ttf");
 			fontNanum = PDType0Font.load(document, fontStream);
 
 			// Start a new content steam which will "hold" the to be created content

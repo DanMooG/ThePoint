@@ -47,82 +47,82 @@ public class ChkCalendar extends JFrame {
 	private Font font_PSS = new Font("맑은 고딕", Font.PLAIN, 10 + y / 250);
 
 	// 이미지
-	private ImageIcon BarIcon = new ImageIcon("images/icon.png");
+	private ImageIcon BarIcon = new ImageIcon("./images/icon.png");
 
 	/* Home 버튼 */
-	private ImageIcon btnHome1 = new ImageIcon("images/button/btnhome.png");
+	private ImageIcon btnHome1 = new ImageIcon("./images/button/btnhome.png");
 	private Image imgbtnHome = btnHome1.getImage();
 	private Image imgbtnHome2 = imgbtnHome.getScaledInstance(height / 15 - 5, height / 15 - 5, Image.SCALE_SMOOTH);
 	private ImageIcon btnHome = new ImageIcon(imgbtnHome2);
 
-	private ImageIcon btnStruct_push1 = new ImageIcon("images/pushedbutton/btnstruct_push.png");
+	private ImageIcon btnStruct_push1 = new ImageIcon("./images/pushedbutton/btnstruct_push.png");
 	private Image imgbtnStruct_push = btnStruct_push1.getImage();
 	private Image imgbtnStruct_push2 = imgbtnStruct_push.getScaledInstance(height / 15 - 5, height / 15 - 5,
 			Image.SCALE_SMOOTH);
 	private ImageIcon btnStruct_push = new ImageIcon(imgbtnStruct_push2);
 
 	/* 월 */
-	private ImageIcon mon1 = new ImageIcon("images/mon.png");
+	private ImageIcon mon1 = new ImageIcon("./images/mon.png");
 	private Image imgmon = mon1.getImage();
 	private Image imgmon2 = imgmon.getScaledInstance(day_W, day_H, Image.SCALE_SMOOTH);
 	private ImageIcon mon = new ImageIcon(imgmon2);
 
 	/* 화 */
-	private ImageIcon tue1 = new ImageIcon("images/tue.png");
+	private ImageIcon tue1 = new ImageIcon("./images/tue.png");
 	private Image imgtue = tue1.getImage();
 	private Image imgtue2 = imgtue.getScaledInstance(day_W, day_H, Image.SCALE_SMOOTH);
 	private ImageIcon tue = new ImageIcon(imgtue2);
 
 	/* 수 */
-	private ImageIcon wed1 = new ImageIcon("images/wed.png");
+	private ImageIcon wed1 = new ImageIcon("./images/wed.png");
 	private Image imgwed = wed1.getImage();
 	private Image imgwed2 = imgwed.getScaledInstance(day_W, day_H, Image.SCALE_SMOOTH);
 	private ImageIcon wed = new ImageIcon(imgwed2);
 
 	/* 목 */
-	private ImageIcon thu1 = new ImageIcon("images/thu.png");
+	private ImageIcon thu1 = new ImageIcon("./images/thu.png");
 	private Image imgthu = thu1.getImage();
 	private Image imgthu2 = imgthu.getScaledInstance(day_W, day_H, Image.SCALE_SMOOTH);
 	private ImageIcon thu = new ImageIcon(imgthu2);
 
 	/* 금 */
-	private ImageIcon fri1 = new ImageIcon("images/fri.png");
+	private ImageIcon fri1 = new ImageIcon("./images/fri.png");
 	private Image imgfri = fri1.getImage();
 	private Image imgfri2 = imgfri.getScaledInstance(day_W, day_H, Image.SCALE_SMOOTH);
 	private ImageIcon fri = new ImageIcon(imgfri2);
 
 	/* 토 */
-	private ImageIcon sat1 = new ImageIcon("images/sat.png");
+	private ImageIcon sat1 = new ImageIcon("./images/sat.png");
 	private Image imgsat = sat1.getImage();
 	private Image imgsat2 = imgsat.getScaledInstance(day_W, day_H, Image.SCALE_SMOOTH);
 	private ImageIcon sat = new ImageIcon(imgsat2);
 
 	/* 일 */
-	private ImageIcon sun1 = new ImageIcon("images/sun.png");
+	private ImageIcon sun1 = new ImageIcon("./images/sun.png");
 	private Image imgsun = sun1.getImage();
 	private Image imgsun2 = imgsun.getScaledInstance(day_W, day_H, Image.SCALE_SMOOTH);
 	private ImageIcon sun = new ImageIcon(imgsun2);
 
 	/* 일 배경 */
-	private ImageIcon back1 = new ImageIcon("images/back.png");
+	private ImageIcon back1 = new ImageIcon("./images/back.png");
 	private Image imgback = back1.getImage();
 	private Image imgback2 = imgback.getScaledInstance(day_W, back_H, Image.SCALE_SMOOTH);
 	private ImageIcon back = new ImageIcon(imgback2);
 
 	/* NONE */
-	private ImageIcon day_none1 = new ImageIcon("images/day/none.png");
+	private ImageIcon day_none1 = new ImageIcon("./images/day/none.png");
 	private Image imgday_none1 = day_none1.getImage();
 	private Image imgday_none2 = imgday_none1.getScaledInstance(day_W, back_H, Image.SCALE_SMOOTH);
 	private ImageIcon day_none = new ImageIcon(imgday_none2);
 
 	/* 일 O */
-	private ImageIcon day_O1 = new ImageIcon("images/day/day_O.png");
+	private ImageIcon day_O1 = new ImageIcon("./images/day/day_O.png");
 	private Image imgday_O = day_O1.getImage();
 	private Image imgday_O2 = imgday_O.getScaledInstance(day_W, back_H, Image.SCALE_SMOOTH);
 	private ImageIcon day_O = new ImageIcon(imgday_O2);
 
 	/* 일 X */
-	private ImageIcon day_X1 = new ImageIcon("images/day/day_X.png");
+	private ImageIcon day_X1 = new ImageIcon("./images/day/day_X.png");
 	private Image imgday_X = day_X1.getImage();
 	private Image imgday_X2 = imgday_X.getScaledInstance(day_W, back_H, Image.SCALE_SMOOTH);
 	private ImageIcon day_X = new ImageIcon(imgday_X2);

@@ -67,22 +67,22 @@ public class FirstScreen extends JFrame {
 	private Font font_PSS = new Font("맑은 고딕", Font.PLAIN, 10 + y / 250);
 
 	// 이미지
-	private ImageIcon BarIcon = new ImageIcon("images/icon.png");
+	private ImageIcon BarIcon = new ImageIcon("./images/icon.png");
 
 	/* 좌측 아이콘+ThePoint */
-	private ImageIcon Mark1 = new ImageIcon("images/mark.png");
+	private ImageIcon Mark1 = new ImageIcon("./images/mark.png");
 	private Image imgMark = Mark1.getImage();
 	private Image imgMark2 = imgMark.getScaledInstance(width / 3, height * 2 / 3, Image.SCALE_SMOOTH);
 	private ImageIcon Mark = new ImageIcon(imgMark2);
 
 	/* 시작 버튼 */
-	private ImageIcon btnStart1 = new ImageIcon("images/button/btnstart.png");
+	private ImageIcon btnStart1 = new ImageIcon("./images/button/btnstart.png");
 	private Image imgbtnStart = btnStart1.getImage();
 	private Image imgbtnStart2 = imgbtnStart.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnStart = new ImageIcon(imgbtnStart2);
 
 	/* 눌린 시작 버튼 */
-	private ImageIcon btnStart_push1 = new ImageIcon("images/pushedbutton/btnstart_push.png");
+	private ImageIcon btnStart_push1 = new ImageIcon("./images/pushedbutton/btnstart_push.png");
 	private Image imgbtnStart_push = btnStart_push1.getImage();
 	private Image imgbtnStart_push2 = imgbtnStart_push.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnStart_push = new ImageIcon(imgbtnStart_push2);

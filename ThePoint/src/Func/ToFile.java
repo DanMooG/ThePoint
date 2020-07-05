@@ -52,62 +52,62 @@ public class ToFile extends JFrame {
 	private Font font_PSS = new Font("맑은 고딕", Font.PLAIN, 10 + y / 250);
 
 	// 이미지
-	private ImageIcon BarIcon = new ImageIcon("images/icon.png");
+	private ImageIcon BarIcon = new ImageIcon("./images/icon.png");
 
 	/* Home 버튼 */
-	private ImageIcon btnHome1 = new ImageIcon("images/button/btnhome.png");
+	private ImageIcon btnHome1 = new ImageIcon("./images/button/btnhome.png");
 	private Image imgbtnHome = btnHome1.getImage();
 	private Image imgbtnHome2 = imgbtnHome.getScaledInstance(height / 15 - 5, height / 15 - 5, Image.SCALE_SMOOTH);
 	private ImageIcon btnHome = new ImageIcon(imgbtnHome2);
 
 	/* 워드 버튼 */
-	private ImageIcon btnWord1 = new ImageIcon("images/button/word.png");
+	private ImageIcon btnWord1 = new ImageIcon("./images/button/word.png");
 	private Image imgbtnWord = btnWord1.getImage();
 	private Image imgbtnWord2 = imgbtnWord.getScaledInstance(btn_W * 3 / 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnWord = new ImageIcon(imgbtnWord2);
 
-	private ImageIcon btnWord_push1 = new ImageIcon("images/pushedbutton/word_push.png");
+	private ImageIcon btnWord_push1 = new ImageIcon("./images/pushedbutton/word_push.png");
 	private Image imgbtnWord_push = btnWord_push1.getImage();
 	private Image imgbtnWord_push2 = imgbtnWord_push.getScaledInstance(btn_W * 3 / 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnWord_push = new ImageIcon(imgbtnWord_push2);
 
 	/* PDF 버튼 */
-	private ImageIcon btnPDF1 = new ImageIcon("images/button/PDF.png");
+	private ImageIcon btnPDF1 = new ImageIcon("./images/button/PDF.png");
 	private Image imgbtnPDF = btnPDF1.getImage();
 	private Image imgbtnPDF2 = imgbtnPDF.getScaledInstance(btn_W * 3 / 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnPDF = new ImageIcon(imgbtnPDF2);
 
-	private ImageIcon btnPDF_push1 = new ImageIcon("images/pushedbutton/PDF_push.png");
+	private ImageIcon btnPDF_push1 = new ImageIcon("./images/pushedbutton/PDF_push.png");
 	private Image imgbtnPDF_push = btnPDF_push1.getImage();
 	private Image imgbtnPDF_push2 = imgbtnPDF_push.getScaledInstance(btn_W * 3 / 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnPDF_push = new ImageIcon(imgbtnPDF_push2);
 
 	/* 1 */
-	private ImageIcon btn11 = new ImageIcon("images/button/btn1.png");
+	private ImageIcon btn11 = new ImageIcon("./images/button/btn1.png");
 	private Image imgbtn1 = btn11.getImage();
 	private Image imgbtn12 = imgbtn1.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn1 = new ImageIcon(imgbtn12);
 
 	/* 2 */
-	private ImageIcon btn21 = new ImageIcon("images/button/btn2.png");
+	private ImageIcon btn21 = new ImageIcon("./images/button/btn2.png");
 	private Image imgbtn2 = btn21.getImage();
 	private Image imgbtn22 = imgbtn2.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn2 = new ImageIcon(imgbtn22);
 
 	/* 3 */
-	private ImageIcon btn31 = new ImageIcon("images/button/btn3.png");
+	private ImageIcon btn31 = new ImageIcon("./images/button/btn3.png");
 	private Image imgbtn3 = btn31.getImage();
 	private Image imgbtn32 = imgbtn3.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn3 = new ImageIcon(imgbtn32);
 
 	/* 4 */
-	private ImageIcon btn41 = new ImageIcon("images/button/btn4.png");
+	private ImageIcon btn41 = new ImageIcon("./images/button/btn4.png");
 	private Image imgbtn4 = btn41.getImage();
 	private Image imgbtn42 = imgbtn4.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn4 = new ImageIcon(imgbtn42);
 
 	/* 5 */
-	private ImageIcon btn51 = new ImageIcon("images/button/btn5.png");
+	private ImageIcon btn51 = new ImageIcon("./images/button/btn5.png");
 	private Image imgbtn5 = btn51.getImage();
 	private Image imgbtn52 = imgbtn5.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn5 = new ImageIcon(imgbtn52);

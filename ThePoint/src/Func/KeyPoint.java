@@ -55,81 +55,81 @@ public class KeyPoint extends JFrame {
 	private Font font_PSS = new Font("맑은 고딕", Font.PLAIN, 10 + y / 250);
 
 	// 이미지
-	private ImageIcon BarIcon = new ImageIcon("images/icon.png");
+	private ImageIcon BarIcon = new ImageIcon("./images/icon.png");
 
 	/* Home 버튼 */
-	private ImageIcon btnHome1 = new ImageIcon("images/button/btnhome.png");
+	private ImageIcon btnHome1 = new ImageIcon("./images/button/btnhome.png");
 	private Image imgbtnHome = btnHome1.getImage();
 	private Image imgbtnHome2 = imgbtnHome.getScaledInstance(height / 15 - 5, height / 15 - 5, Image.SCALE_SMOOTH);
 	private ImageIcon btnHome = new ImageIcon(imgbtnHome2);
 
-	private ImageIcon btnStruct_push1 = new ImageIcon("images/pushedbutton/btnstruct_push.png");
+	private ImageIcon btnStruct_push1 = new ImageIcon("./images/pushedbutton/btnstruct_push.png");
 	private Image imgbtnStruct_push = btnStruct_push1.getImage();
 	private Image imgbtnStruct_push2 = imgbtnStruct_push.getScaledInstance(height / 15 - 5, height / 15 - 5,
 			Image.SCALE_SMOOTH);
 	private ImageIcon btnStruct_push = new ImageIcon(imgbtnStruct_push2);
 
 	/* 검색 버튼 */
-	private ImageIcon btnSearch1 = new ImageIcon("images/button/btnSearch.png");
+	private ImageIcon btnSearch1 = new ImageIcon("./images/button/btnSearch.png");
 	private Image imgbtnSearch = btnSearch1.getImage();
 	private Image imgbtnSearch2 = imgbtnSearch.getScaledInstance((height / 11 - 10) * 18 / 10, height / 11 - 10,
 			Image.SCALE_SMOOTH);
 	private ImageIcon btnSearch = new ImageIcon(imgbtnSearch2);
 
-	private ImageIcon btnSearch_push1 = new ImageIcon("images/pushedbutton/btnSearch_push.png");
+	private ImageIcon btnSearch_push1 = new ImageIcon("./images/pushedbutton/btnSearch_push.png");
 	private Image imgbtnSearch_push = btnSearch_push1.getImage();
 	private Image imgbtnSearch_push2 = imgbtnSearch_push.getScaledInstance((height / 11 - 10) * 18 / 10,
 			height / 11 - 10, Image.SCALE_SMOOTH);
 	private ImageIcon btnSearch_push = new ImageIcon(imgbtnSearch_push2);
 
 	/* 입력 버튼 */
-	private ImageIcon btnInput1 = new ImageIcon("images/button/btn_point_input.png");
+	private ImageIcon btnInput1 = new ImageIcon("./images/button/btn_point_input.png");
 	private Image imgbtnInput = btnInput1.getImage();
 	private Image imgbtnInput2 = imgbtnInput.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnInput = new ImageIcon(imgbtnInput2);
 
-	private ImageIcon btnInput_push1 = new ImageIcon("images/pushedbutton/btn_point_input_push.png");
+	private ImageIcon btnInput_push1 = new ImageIcon("./images/pushedbutton/btn_point_input_push.png");
 	private Image imgbtnInput_push = btnInput_push1.getImage();
 	private Image imgbtnInput_push2 = imgbtnInput_push.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnInput_push = new ImageIcon(imgbtnInput_push2);
 
 	/* 초기화 버튼 */
-	private ImageIcon btnReset1 = new ImageIcon("images/button/btn_point_reset.png");
+	private ImageIcon btnReset1 = new ImageIcon("./images/button/btn_point_reset.png");
 	private Image imgbtnReset = btnReset1.getImage();
 	private Image imgbtnReset2 = imgbtnReset.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnReset = new ImageIcon(imgbtnReset2);
 
-	private ImageIcon btnReset_push1 = new ImageIcon("images/pushedbutton/btn_point_reset_push.png");
+	private ImageIcon btnReset_push1 = new ImageIcon("./images/pushedbutton/btn_point_reset_push.png");
 	private Image imgbtnReset_push = btnReset_push1.getImage();
 	private Image imgbtnReset_push2 = imgbtnReset_push.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnReset_push = new ImageIcon(imgbtnReset_push2);
 
 	/* 1 */
-	private ImageIcon btn11 = new ImageIcon("images/button/btn1.png");
+	private ImageIcon btn11 = new ImageIcon("./images/button/btn1.png");
 	private Image imgbtn1 = btn11.getImage();
 	private Image imgbtn12 = imgbtn1.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn1 = new ImageIcon(imgbtn12);
 
 	/* 2 */
-	private ImageIcon btn21 = new ImageIcon("images/button/btn2.png");
+	private ImageIcon btn21 = new ImageIcon("./images/button/btn2.png");
 	private Image imgbtn2 = btn21.getImage();
 	private Image imgbtn22 = imgbtn2.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn2 = new ImageIcon(imgbtn22);
 
 	/* 3 */
-	private ImageIcon btn31 = new ImageIcon("images/button/btn3.png");
+	private ImageIcon btn31 = new ImageIcon("./images/button/btn3.png");
 	private Image imgbtn3 = btn31.getImage();
 	private Image imgbtn32 = imgbtn3.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn3 = new ImageIcon(imgbtn32);
 
 	/* 4 */
-	private ImageIcon btn41 = new ImageIcon("images/button/btn4.png");
+	private ImageIcon btn41 = new ImageIcon("./images/button/btn4.png");
 	private Image imgbtn4 = btn41.getImage();
 	private Image imgbtn42 = imgbtn4.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn4 = new ImageIcon(imgbtn42);
 
 	/* 5 */
-	private ImageIcon btn51 = new ImageIcon("images/button/btn5.png");
+	private ImageIcon btn51 = new ImageIcon("./images/button/btn5.png");
 	private Image imgbtn5 = btn51.getImage();
 	private Image imgbtn52 = imgbtn5.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn5 = new ImageIcon(imgbtn52);

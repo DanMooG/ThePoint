@@ -60,38 +60,38 @@ public class ModInfo extends JFrame {
 	private Font font_PSS = new Font("맑은 고딕", Font.PLAIN, 10 + y / 250);
 
 	// 이미지
-	private ImageIcon BarIcon = new ImageIcon("images/icon.png");
+	private ImageIcon BarIcon = new ImageIcon("./images/icon.png");
 
 	/* Home 버튼 */
-	private ImageIcon btnHome1 = new ImageIcon("images/button/btnhome.png");
+	private ImageIcon btnHome1 = new ImageIcon("./images/button/btnhome.png");
 	private Image imgbtnHome = btnHome1.getImage();
 	private Image imgbtnHome2 = imgbtnHome.getScaledInstance(height / 15 - 5, height / 15 - 5, Image.SCALE_SMOOTH);
 	private ImageIcon btnHome = new ImageIcon(imgbtnHome2);
 
-	private ImageIcon btnStruct_push1 = new ImageIcon("images/pushedbutton/btnstruct_push.png");
+	private ImageIcon btnStruct_push1 = new ImageIcon("./images/pushedbutton/btnstruct_push.png");
 	private Image imgbtnStruct_push = btnStruct_push1.getImage();
 	private Image imgbtnStruct_push2 = imgbtnStruct_push.getScaledInstance(height / 15 - 5, height / 15 - 5,
 			Image.SCALE_SMOOTH);
 	private ImageIcon btnStruct_push = new ImageIcon(imgbtnStruct_push2);
 
 	/* 초기화 버튼 */
-	private ImageIcon btnReset1 = new ImageIcon("images/button/btnreset.png");
+	private ImageIcon btnReset1 = new ImageIcon("./images/button/btnreset.png");
 	private Image imgbtnReset = btnReset1.getImage();
 	private Image imgbtnReset2 = imgbtnReset.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnReset = new ImageIcon(imgbtnReset2);
 
-	private ImageIcon btnReset_push1 = new ImageIcon("images/pushedbutton/btnreset_push.png");
+	private ImageIcon btnReset_push1 = new ImageIcon("./images/pushedbutton/btnreset_push.png");
 	private Image imgbtnReset_push = btnReset_push1.getImage();
 	private Image imgbtnReset_push2 = imgbtnReset_push.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnReset_push = new ImageIcon(imgbtnReset_push2);
 
 	/* 수정 버튼 */
-	private ImageIcon btnModify1 = new ImageIcon("images/button/btnmodify.png");
+	private ImageIcon btnModify1 = new ImageIcon("./images/button/btnmodify.png");
 	private Image imgbtnModify = btnModify1.getImage();
 	private Image imgbtnModify2 = imgbtnModify.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnModify = new ImageIcon(imgbtnModify2);
 
-	private ImageIcon btnModify_push1 = new ImageIcon("images/pushedbutton/btnmodify_push.png");
+	private ImageIcon btnModify_push1 = new ImageIcon("./images/pushedbutton/btnmodify_push.png");
 	private Image imgbtnModify_push = btnModify_push1.getImage();
 	private Image imgbtnModify_push2 = imgbtnModify_push.getScaledInstance(btn_W, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnModify_push = new ImageIcon(imgbtnModify_push2);

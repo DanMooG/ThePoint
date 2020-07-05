@@ -60,79 +60,79 @@ public class Structure extends JFrame {
 	private Font font_PSS = new Font("맑은 고딕", Font.PLAIN, 10 + y / 250);
 
 	// 이미지
-	private ImageIcon BarIcon = new ImageIcon("images/icon.png");
+	private ImageIcon BarIcon = new ImageIcon("./images/icon.png");
 
 	/* Home 버튼 */
-	private ImageIcon btnHome1 = new ImageIcon("images/button/btnhome.png");
+	private ImageIcon btnHome1 = new ImageIcon("./images/button/btnhome.png");
 	private Image imgbtnHome = btnHome1.getImage();
 	private Image imgbtnHome2 = imgbtnHome.getScaledInstance(height / 15 - 5, height / 15 - 5, Image.SCALE_SMOOTH);
 	private ImageIcon btnHome = new ImageIcon(imgbtnHome2);
 
-	private ImageIcon btnStruct_push1 = new ImageIcon("images/pushedbutton/btnstruct_push.png");
+	private ImageIcon btnStruct_push1 = new ImageIcon("./images/pushedbutton/btnstruct_push.png");
 	private Image imgbtnStruct_push = btnStruct_push1.getImage();
 	private Image imgbtnStruct_push2 = imgbtnStruct_push.getScaledInstance(height / 15 - 5, height / 15 - 5,
 			Image.SCALE_SMOOTH);
 	private ImageIcon btnStruct_push = new ImageIcon(imgbtnStruct_push2);
 
 	/* 1 */
-	private ImageIcon btn11 = new ImageIcon("images/button/btn1.png");
+	private ImageIcon btn11 = new ImageIcon("./images/button/btn1.png");
 	private Image imgbtn1 = btn11.getImage();
 	private Image imgbtn12 = imgbtn1.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn1 = new ImageIcon(imgbtn12);
 
 	/* 2 */
-	private ImageIcon btn21 = new ImageIcon("images/button/btn2.png");
+	private ImageIcon btn21 = new ImageIcon("./images/button/btn2.png");
 	private Image imgbtn2 = btn21.getImage();
 	private Image imgbtn22 = imgbtn2.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn2 = new ImageIcon(imgbtn22);
 
 	/* 3 */
-	private ImageIcon btn31 = new ImageIcon("images/button/btn3.png");
+	private ImageIcon btn31 = new ImageIcon("./images/button/btn3.png");
 	private Image imgbtn3 = btn31.getImage();
 	private Image imgbtn32 = imgbtn3.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn3 = new ImageIcon(imgbtn32);
 
 	/* 4 */
-	private ImageIcon btn41 = new ImageIcon("images/button/btn4.png");
+	private ImageIcon btn41 = new ImageIcon("./images/button/btn4.png");
 	private Image imgbtn4 = btn41.getImage();
 	private Image imgbtn42 = imgbtn4.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn4 = new ImageIcon(imgbtn42);
 
 	/* 5 */
-	private ImageIcon btn51 = new ImageIcon("images/button/btn5.png");
+	private ImageIcon btn51 = new ImageIcon("./images/button/btn5.png");
 	private Image imgbtn5 = btn51.getImage();
 	private Image imgbtn52 = imgbtn5.getScaledInstance(num_W, num_W, Image.SCALE_SMOOTH);
 	private ImageIcon btn5 = new ImageIcon(imgbtn52);
 
 	/* Minus 버튼 */
-	private ImageIcon btnMinus1 = new ImageIcon("images/button/btnMinus.png");
+	private ImageIcon btnMinus1 = new ImageIcon("./images/button/btnMinus.png");
 	private Image imgbtnMinus = btnMinus1.getImage();
 	private Image imgbtnMinus2 = imgbtnMinus.getScaledInstance(btn_W * 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnMinus = new ImageIcon(imgbtnMinus2);
 
-	private ImageIcon btnMinus_push1 = new ImageIcon("images/pushedbutton/btnMinus_push.png");
+	private ImageIcon btnMinus_push1 = new ImageIcon("./images/pushedbutton/btnMinus_push.png");
 	private Image imgbtnMinus_push = btnMinus_push1.getImage();
 	private Image imgbtnMinus_push2 = imgbtnMinus_push.getScaledInstance(btn_W * 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnMinus_push = new ImageIcon(imgbtnMinus_push2);
 
 	/* Plus 버튼 */
-	private ImageIcon btnPlus1 = new ImageIcon("images/button/btnPlus.png");
+	private ImageIcon btnPlus1 = new ImageIcon("./images/button/btnPlus.png");
 	private Image imgbtnPlus = btnPlus1.getImage();
 	private Image imgbtnPlus2 = imgbtnPlus.getScaledInstance(btn_W * 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnPlus = new ImageIcon(imgbtnPlus2);
 
-	private ImageIcon btnPlus_push1 = new ImageIcon("images/pushedbutton/btnPlus_push.png");
+	private ImageIcon btnPlus_push1 = new ImageIcon("./images/pushedbutton/btnPlus_push.png");
 	private Image imgbtnPlus_push = btnPlus_push1.getImage();
 	private Image imgbtnPlus_push2 = imgbtnPlus_push.getScaledInstance(btn_W * 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnPlus_push = new ImageIcon(imgbtnPlus_push2);
 
 	/* 입력 버튼 */
-	private ImageIcon btnInput1 = new ImageIcon("images/button/btnInput.png");
+	private ImageIcon btnInput1 = new ImageIcon("./images/button/btnInput.png");
 	private Image imgbtnInput = btnInput1.getImage();
 	private Image imgbtnInput2 = imgbtnInput.getScaledInstance(btn_W * 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnInput = new ImageIcon(imgbtnInput2);
 
-	private ImageIcon btnInput_push1 = new ImageIcon("images/pushedbutton/btnInput_push.png");
+	private ImageIcon btnInput_push1 = new ImageIcon("./images/pushedbutton/btnInput_push.png");
 	private Image imgbtnInput_push = btnInput_push1.getImage();
 	private Image imgbtnInput_push2 = imgbtnInput_push.getScaledInstance(btn_W * 2, btn_H, Image.SCALE_SMOOTH);
 	private ImageIcon btnInput_push = new ImageIcon(imgbtnInput_push2);
@@ -285,12 +285,27 @@ public class Structure extends JFrame {
 					int chk_first = JOptionPane.showConfirmDialog(null, "처음 목차 입력 시, 전체가 초기화 됩니다.\n첫 목차 입력입니까?",
 							"입력여부 확인", JOptionPane.YES_NO_OPTION);
 					if (chk_first == JOptionPane.NO_OPTION) {
-						JOptionPane.showMessageDialog(null, "오호", "성공", JOptionPane.WARNING_MESSAGE);
+						JOptionPane.showMessageDialog(null, "취소되었습니다", "취소", JOptionPane.WARNING_MESSAGE);
 					} else {
-						JOptionPane.showMessageDialog(null, "추가할 위치의 목차를 선택해주세요", "오류", JOptionPane.WARNING_MESSAGE);
+						pk_DAO = new P_KeyPoint_DAO();
+
+						// 입력 하고 결과 확인
+						boolean result1 = false;
+						if (!txt_1.getText().toString().equals("")) {
+							result1 = pk_DAO.addNew(1, 0, 0, 0, 0, txt_1.getText().toString());
+							if (result1 == true) {
+								JOptionPane.showMessageDialog(null, "입력 되었습니다", "입력 완료", JOptionPane.WARNING_MESSAGE);
+								Reset();
+							} else {
+								JOptionPane.showMessageDialog(null, "오류가 발생했습니다", "오류", JOptionPane.WARNING_MESSAGE);
+							}
+						} else {
+							JOptionPane.showMessageDialog(null, "1번에 내용을 입력해주세요", "오류", JOptionPane.WARNING_MESSAGE);
+						}
 					}
 				} else {
 					pk_DAO = new P_KeyPoint_DAO();
+
 					// 입력 하고 결과 확인
 					boolean result1 = false;
 					if (!txt_1.getText().toString().equals("")) {
@@ -364,7 +379,7 @@ public class Structure extends JFrame {
 					if (result1 == JOptionPane.YES_OPTION) { // Yes
 						// 수정 하고 결과 확인
 						String info = null;
-						
+
 						if (!txt_1.getText().toString().equals("")) {
 							info = txt_1.getText().toString();
 						} else if (!txt_2.getText().toString().equals("")) {
@@ -378,14 +393,14 @@ public class Structure extends JFrame {
 						} else {
 							info = null;
 						}
-						
-						if(info == null) {
+
+						if (info == null) {
 							JOptionPane.showMessageDialog(null, "내용을 입력해주세요", "오류", JOptionPane.WARNING_MESSAGE);
 						} else {
 							boolean result2 = false;
 							pk_DAO = new P_KeyPoint_DAO();
 							result2 = pk_DAO.ResetRow(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3(),
-								sel_DTO.getP_Kind4(), sel_DTO.getP_Kind5(), info);
+									sel_DTO.getP_Kind4(), sel_DTO.getP_Kind5(), info);
 							if (result2 == true) {
 								JOptionPane.showMessageDialog(null, "수정 되었습니다", "수정 완료", JOptionPane.WARNING_MESSAGE);
 								Reset();
@@ -393,7 +408,7 @@ public class Structure extends JFrame {
 								JOptionPane.showMessageDialog(null, "오류가 발생했습니다", "오류", JOptionPane.WARNING_MESSAGE);
 							}
 						}
-						
+
 					} else { // No 또는 창을 그냥 닫은 경우
 						JOptionPane.showMessageDialog(null, "취소되었습니다", "취소", JOptionPane.WARNING_MESSAGE);
 					}
