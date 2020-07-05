@@ -234,6 +234,52 @@ public class P_KeyPoint_DAO {
 		return result;
 	}
 
+	// 자리 마련
+	public void MakeSpace(int k1, int k2, int k3, int k4, int k5) {
+		String sql = "";
+		Connection conn = null;
+		PreparedStatement pst = null;
+		int rs = 0;
+
+		try {
+			conn = getConn();
+			sql = "UPDATE P_KeyPoint SET ";
+			if ((k1 != 0) && (k2 == 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 = p_kind1 + 1";
+			} else if ((k1 != 0) && (k2 != 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 = p_kind1 + 1 and p_kind2 = p_kind2 + 1";
+			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 = p_kind1 + 1 and p_kind2 = p_kind2 + 1 and p_kind3 = p_kind3 + 1";
+			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 != 0) && (k5 == 0)) {
+				sql += "p_kind1 = p_kind1 + 1 and p_kind2 = p_kind2 + 1 and p_kind3 = p_kind3 + 1 and p_kind4 = p_kind4 + 1";
+			} else {
+				sql += "p_kind1 = p_kind1 + 1 and p_kind2 = p_kind2 + 1 and p_kind3 = p_kind3 + 1 and p_kind4 = p_kind4 + 1 and p_kind5 = p_kind5 + 1";
+			}
+			sql += " WHERE p_kind1 >= ? and p_kind2 >= ? and p_kind3 >= ? and p_kind4 >= ? and p_kind5 >= ?";
+			sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc, p_kind5 desc;";
+
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, k1);
+			pst.setInt(2, k2);
+			pst.setInt(3, k3);
+			pst.setInt(4, k4);
+			pst.setInt(5, k5);
+			rs = pst.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!pst.isClosed())
+					pst.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+
 	// 새로운 데이터 입력
 	public boolean addNew(int k1, int k2, int k3, int k4, int k5, String kind_point) {
 		boolean result = false;
@@ -319,6 +365,52 @@ public class P_KeyPoint_DAO {
 		return result;
 	}
 
+	// 자리 없애기
+	public void DeleteSpace(int k1, int k2, int k3, int k4, int k5) {
+		String sql = "";
+		Connection conn = null;
+		PreparedStatement pst = null;
+		int rs = 0;
+
+		System.out.println(k1 + "-" + k2 + "-" + k3 + "-" + k4 + "-" + k5);
+		try {
+			conn = getConn();
+			sql = "UPDATE P_KeyPoint SET ";
+			if ((k1 != 0) && (k2 == 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 = p_kind1 - 1";
+			} else if ((k1 != 0) && (k2 != 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 = p_kind1 - 1 and p_kind2 = p_kind2 - 1";
+			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 = p_kind1 - 1 and p_kind2 = p_kind2 - 1 and p_kind3 = p_kind3 - 1";
+			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 != 0) && (k5 == 0)) {
+				sql += "p_kind1 = p_kind1 - 1 and p_kind2 = p_kind2 - 1 and p_kind3 = p_kind3 - 1 and p_kind4 = p_kind4 - 1";
+			} else {
+				sql += "p_kind1 = p_kind1 - 1 and p_kind2 = p_kind2 - 1 and p_kind3 = p_kind3 - 1 and p_kind4 = p_kind4 - 1 and p_kind5 = p_kind5 - 1";
+			}
+			sql += " WHERE p_kind1 >= ? and p_kind2 >= ? and p_kind3 >= ? and p_kind4 >= ? and p_kind5 >= ?;";
+
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, k1);
+			pst.setInt(2, k2);
+			pst.setInt(3, k3);
+			pst.setInt(4, k4);
+			pst.setInt(5, k5);
+			rs = pst.executeUpdate();
+
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!pst.isClosed())
+					pst.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+
 	// 해당 목차 삭제
 	public boolean RemoveRow(int k1, int k2, int k3, int k4, int k5) {
 		boolean result = false;
@@ -329,15 +421,48 @@ public class P_KeyPoint_DAO {
 
 		try {
 			conn = getConn();
-			sql = "delete from p_KeyPoint where p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ? and p_kind5 like ?";
+			sql = "delete from p_KeyPoint where ";
+			if ((k1 != 0) && (k2 == 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 like ?;";
 
-			pst = conn.prepareStatement(sql);
-			pst.setInt(1, k1);
-			pst.setInt(2, k2);
-			pst.setInt(3, k3);
-			pst.setInt(4, k4);
-			pst.setInt(5, k5);
-			rs = pst.executeUpdate();
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				rs = pst.executeUpdate();
+			} else if ((k1 != 0) && (k2 != 0) && (k3 == 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 like ? and p_kind2 like ?;";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				rs = pst.executeUpdate();
+			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 == 0) && (k5 == 0)) {
+				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ?;";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				rs = pst.executeUpdate();
+			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 != 0) && (k5 == 0)) {
+				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ?;";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				pst.setInt(4, k4);
+				rs = pst.executeUpdate();
+			} else {
+				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ? and p_kind5 like ?;";
+
+				pst = conn.prepareStatement(sql);
+				pst.setInt(1, k1);
+				pst.setInt(2, k2);
+				pst.setInt(3, k3);
+				pst.setInt(4, k4);
+				pst.setInt(5, k5);
+				rs = pst.executeUpdate();
+			}
 
 			if (rs > 0) {
 				result = true;
@@ -456,12 +581,8 @@ public class P_KeyPoint_DAO {
 
 		try {
 			conn = getConn();
-			sql = "SELECT * FROM p_keypoint"
-					+ " WHERE p_Kind1 BETWEEN ? AND ?"
-					+" AND p_Kind2 BETWEEN ? AND ?"
-					+" AND p_Kind3 BETWEEN ? AND ?"
-					+" AND p_Kind4 BETWEEN ? AND ?"
-					+" AND p_Kind5 BETWEEN ? AND ?;";
+			sql = "SELECT * FROM p_keypoint" + " WHERE p_Kind1 BETWEEN ? AND ?" + " AND p_Kind2 BETWEEN ? AND ?"
+					+ " AND p_Kind3 BETWEEN ? AND ?" + " AND p_Kind4 BETWEEN ? AND ?" + " AND p_Kind5 BETWEEN ? AND ?;";
 
 			pst = conn.prepareStatement(sql);
 			pst.setInt(1, startK[0]);
@@ -477,7 +598,7 @@ public class P_KeyPoint_DAO {
 			rs = pst.executeQuery();
 
 			int i = 0;
-			while(rs.next()) {
+			while (rs.next()) {
 				P_KeyPoint_DTO row = new P_KeyPoint_DTO();
 				row.setP_Kind1(rs.getInt("p_Kind1"));
 				row.setP_Kind2(rs.getInt("p_Kind2"));
@@ -486,11 +607,11 @@ public class P_KeyPoint_DAO {
 				row.setP_Kind5(rs.getInt("p_Kind5"));
 				row.setP_Kind_Info(rs.getString("p_Kind_Info"));
 				row.setP_Point_Info(rs.getString("p_Point_Info"));
-				
+
 				result.add(row);
 				i++;
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println(e);
 		} finally {
@@ -507,5 +628,31 @@ public class P_KeyPoint_DAO {
 		}
 
 		return result;
+	}
+
+	// 전체 삭제
+	public void DeleteAll() {
+		String sql = "";
+		Connection conn = null;
+		Statement stmt = null;
+		int rs = 0;
+
+		try {
+			conn = getConn();
+			sql = "delete from p_KeyPoint";
+			stmt = conn.createStatement();
+			rs = stmt.executeUpdate(sql);
+		} catch (Exception e) {
+
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!stmt.isClosed())
+					stmt.close();
+			} catch (Exception e) {
+
+			}
+		}
 	}
 }

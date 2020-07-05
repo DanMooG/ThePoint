@@ -235,6 +235,7 @@ public class KeyPoint extends JFrame {
 		com_1.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
+				
 				str = "p_Kind1 LIKE " + (com_1.getSelectedIndex() + 1)
 						+ " AND p_Kind2 NOT LIKE 0 AND p_Kind3 LIKE 0 AND p_Kind4 LIKE 0 AND p_Kind5 LIKE 0";
 				com_2.removeAllItems();

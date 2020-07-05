@@ -292,6 +292,7 @@ public class Structure extends JFrame {
 						// 입력 하고 결과 확인
 						boolean result1 = false;
 						if (!txt_1.getText().toString().equals("")) {
+							pk_DAO.DeleteAll();
 							result1 = pk_DAO.addNew(1, 0, 0, 0, 0, txt_1.getText().toString());
 							if (result1 == true) {
 								JOptionPane.showMessageDialog(null, "입력 되었습니다", "입력 완료", JOptionPane.WARNING_MESSAGE);
@@ -309,6 +310,7 @@ public class Structure extends JFrame {
 					// 입력 하고 결과 확인
 					boolean result1 = false;
 					if (!txt_1.getText().toString().equals("")) {
+						pk_DAO.MakeSpace(sel_DTO.getP_Kind1() + 1, 0, 0, 0, 0);
 						result1 = pk_DAO.addNew(sel_DTO.getP_Kind1() + 1, 0, 0, 0, 0, txt_1.getText().toString());
 						if (result1 == true) {
 							JOptionPane.showMessageDialog(null, "입력 되었습니다", "입력 완료", JOptionPane.WARNING_MESSAGE);
@@ -317,6 +319,7 @@ public class Structure extends JFrame {
 							JOptionPane.showMessageDialog(null, "오류가 발생했습니다", "오류", JOptionPane.WARNING_MESSAGE);
 						}
 					} else if (!txt_2.getText().toString().equals("")) {
+						pk_DAO.MakeSpace(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2() + 1, 0, 0, 0);
 						result1 = pk_DAO.addNew(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2() + 1, 0, 0, 0,
 								txt_2.getText().toString());
 						if (result1 == true) {
@@ -326,6 +329,7 @@ public class Structure extends JFrame {
 							JOptionPane.showMessageDialog(null, "오류가 발생했습니다", "오류", JOptionPane.WARNING_MESSAGE);
 						}
 					} else if (!txt_3.getText().toString().equals("")) {
+						pk_DAO.MakeSpace(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3() + 1, 0, 0);
 						result1 = pk_DAO.addNew(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3() + 1, 0,
 								0, txt_3.getText().toString());
 						if (result1 == true) {
@@ -335,6 +339,8 @@ public class Structure extends JFrame {
 							JOptionPane.showMessageDialog(null, "오류가 발생했습니다", "오류", JOptionPane.WARNING_MESSAGE);
 						}
 					} else if (!txt_4.getText().toString().equals("")) {
+						pk_DAO.MakeSpace(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3(),
+								sel_DTO.getP_Kind4() + 1, 0);
 						result1 = pk_DAO.addNew(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3(),
 								sel_DTO.getP_Kind4() + 1, 0, txt_4.getText().toString());
 						if (result1 == true) {
@@ -344,6 +350,8 @@ public class Structure extends JFrame {
 							JOptionPane.showMessageDialog(null, "오류가 발생했습니다", "오류", JOptionPane.WARNING_MESSAGE);
 						}
 					} else if (!txt_5.getText().toString().equals("")) {
+						pk_DAO.MakeSpace(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3(),
+								sel_DTO.getP_Kind4(), sel_DTO.getP_Kind4() + 1);
 						result1 = pk_DAO.addNew(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3(),
 								sel_DTO.getP_Kind4(), sel_DTO.getP_Kind4() + 1, txt_5.getText().toString());
 						if (result1 == true) {
@@ -439,6 +447,8 @@ public class Structure extends JFrame {
 						// 삭제 시키고 결과 확인
 						boolean result2 = false;
 						result2 = pk_DAO.RemoveRow(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3(),
+								sel_DTO.getP_Kind4(), sel_DTO.getP_Kind5());
+						pk_DAO.DeleteSpace(sel_DTO.getP_Kind1(), sel_DTO.getP_Kind2(), sel_DTO.getP_Kind3(),
 								sel_DTO.getP_Kind4(), sel_DTO.getP_Kind5());
 
 						if (result2 == true) {
