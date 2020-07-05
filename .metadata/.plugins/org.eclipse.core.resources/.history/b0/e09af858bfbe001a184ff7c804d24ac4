@@ -18,6 +18,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import org.mariadb.jdbc.internal.failover.Listener;
@@ -130,6 +131,14 @@ public class ToFile extends JFrame {
 		setIconImage(BarIcon.getImage()); // 좌측 상단이랑 작업 표시줄 아이콘 설정
 		panel.setBackground(new java.awt.Color(240, 240, 242)); // 뒤에 배경 블랙
 		setLayout(null); // 판을 다시 짠다
+		
+		/** 메세지박스 UI **/
+		UIManager UI = new UIManager();
+		UI.put("OptionPane.background", new java.awt.Color(119, 150, 242));
+		UI.put("Panel.background", new java.awt.Color(119, 150, 242));
+		UI.put("OptionPane.messageFont", font_BM);
+		UI.put("OptionPane.messageForeground", Color.WHITE);
+		UI.put("OptionPane.buttonFont", font_L);
 
 		/* Home 버튼 */
 		btn_Home = new JButton(btnHome);

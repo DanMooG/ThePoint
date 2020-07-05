@@ -138,7 +138,7 @@ public class MakePDF {
 			document.close();
 			
 
-			JOptionPane.showMessageDialog(null, "사용자 파일 밑 Documents에 출력되었습니다", "완료", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "삭제되었습니다", "삭제", JOptionPane.WARNING_MESSAGE);
 		} catch (Exception e) {
 			/** 메세지박스 UI **/
 			UIManager UI = new UIManager();

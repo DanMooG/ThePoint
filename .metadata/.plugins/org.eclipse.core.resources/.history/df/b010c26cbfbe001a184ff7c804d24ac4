@@ -136,9 +136,6 @@ public class MakePDF {
 			// Save the results and ensure that the document is properly closed.
 			document.save("C:\\Users\\tytyj\\Documents\\ThePoint.pdf");
 			document.close();
-			
-
-			JOptionPane.showMessageDialog(null, "사용자 파일 밑 Documents에 출력되었습니다", "완료", JOptionPane.INFORMATION_MESSAGE);
 		} catch (Exception e) {
 			/** 메세지박스 UI **/
 			UIManager UI = new UIManager();
