@@ -129,8 +129,8 @@ public class M_Info_DAO {
 
 		try {
 			conn = getConn();
-			sql = "UPDATE M_INFO SET M_GOAL = ?, M_LKIND = ?, M_SKIND = ?, M_STARTYEAR = ?, M_STARTMONTH = ?, " + 
-					"M_STARTDATE = ?, M_ENDYEAR = ?, M_ENDMONTH = ?, M_ENDDATE = ?, M_DETERMIN = ? WHERE M_NAME LIKE ?";
+			sql = "UPDATE M_INFO SET M_GOAL = ?, M_LKIND = ?, M_SKIND = ?, M_STARTYEAR = ?, M_STARTMONTH = ?, "
+					+ "M_STARTDATE = ?, M_ENDYEAR = ?, M_ENDMONTH = ?, M_ENDDATE = ?, M_DETERMIN = ? WHERE M_NAME LIKE ?";
 
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, dto.getM_Goal());
@@ -145,7 +145,7 @@ public class M_Info_DAO {
 			pst.setString(10, dto.getM_Determin());
 			pst.setString(11, dto.getM_Name());
 			rs = pst.executeUpdate();
-			
+
 			if (rs > 0) {
 				result = true;
 			} else {
@@ -165,5 +165,33 @@ public class M_Info_DAO {
 		}
 
 		return result;
+	}
+
+	// 전체 초기화
+	public void RemoveAll() {
+		String sql = "";
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConn();
+			sql = "DELETE from m_info;";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!stmt.isClosed())
+					stmt.close();
+				if (!rs.isClosed())
+					rs.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
 	}
 }

@@ -21,10 +21,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import DAO.Calendar_DAO;
 import DAO.M_Info_DAO;
+import DAO.P_KeyPoint_DAO;
 import DTO.M_Info_DTO;
 
 public class ModInfo extends JFrame {
@@ -114,6 +117,14 @@ public class ModInfo extends JFrame {
 		setIconImage(BarIcon.getImage()); // 좌측 상단이랑 작업 표시줄 아이콘 설정
 		panel.setBackground(new java.awt.Color(167, 186, 242)); // 뒤에 배경색
 		setLayout(null); // 판을 다시 짠다
+		
+		/** 메세지박스 UI **/
+		UIManager UI = new UIManager();
+		UI.put("OptionPane.background", new java.awt.Color(119, 150, 242));
+		UI.put("Panel.background", new java.awt.Color(119, 150, 242));
+		UI.put("OptionPane.messageFont", font_BM);
+		UI.put("OptionPane.messageForeground", Color.WHITE);
+		UI.put("OptionPane.buttonFont", font_L);
 
 		/* Home 버튼 */
 		btn_Home = new JButton(btnHome);
@@ -496,7 +507,24 @@ public class ModInfo extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// 초기화
-				setInfo();
+				int result1 = JOptionPane.showConfirmDialog(null, "전체 초기화 하시겠습니까?",
+						"초기화 여부 확인", JOptionPane.YES_NO_OPTION);
+				if (result1 == JOptionPane.YES_OPTION) { // Yes
+					Calendar_DAO cDAO = new Calendar_DAO();
+					M_Info_DAO miDAO = new M_Info_DAO();
+					P_KeyPoint_DAO pkDAO = new P_KeyPoint_DAO();
+					
+					//달력 초기화
+					cDAO.RemoveAll();
+					//멤버 데이터 초기화
+					miDAO.RemoveAll();
+					//목차 및 내용 초기화
+					pkDAO.DeleteAll();
+					
+					FirstScreen fs = new FirstScreen();
+					fs.setVisible(true);
+					dispose();
+				}
 			}
 		});
 
@@ -527,9 +555,6 @@ public class ModInfo extends JFrame {
 		});
 
 		add(btn_modify);
-
-		// 데이터 출력
-		setInfo();
 	}
 
 	// 상단 문구 DB 연결 및 출력
@@ -559,26 +584,6 @@ public class ModInfo extends JFrame {
 		mi_DTO = mi_DAO.CheckInfo();
 
 		return mi_DTO;
-	}
-
-	// 정보 출력
-	public void setInfo() {
-		txt_Name.setText(mi_DTO.getM_Name().toString());
-		comb_Goal.setSelectedItem(mi_DTO.getM_Goal().toString());
-		txt_LKind.setText(mi_DTO.getM_LKind().toString());
-		txt_SKind.setText(mi_DTO.getM_SKind().toString());
-		com_sYear.setSelectedItem(Integer.toString(mi_DTO.getM_StartYear()));
-		com_sMonth.setSelectedItem(Integer.toString(mi_DTO.getM_StartMonth()));
-		com_sDate.setSelectedItem(Integer.toString(mi_DTO.getM_StartDate()));
-		com_eYear.setSelectedItem(Integer.toString(mi_DTO.getM_EndYear()));
-		com_eMonth.setSelectedItem(Integer.toString(mi_DTO.getM_EndMonth()));
-		for (int i = 0; i < com_eDate.getItemCount(); i++) {
-			if (Integer.parseInt(com_eDate.getItemAt(i).toString()) == mi_DTO.getM_EndDate()) {
-				com_eDate.setSelectedIndex(i);
-				break;
-			}
-		}
-		txt_Determin.setText(mi_DTO.getM_Determin().toString());
 	}
 
 	// 빈칸이 있는지 확인

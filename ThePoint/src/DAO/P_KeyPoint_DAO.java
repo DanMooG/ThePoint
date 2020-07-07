@@ -244,14 +244,14 @@ public class P_KeyPoint_DAO {
 		try {
 			conn = getConn();
 			sql = "UPDATE P_KeyPoint SET ";
-			if (num==1) {
+			if (num == 1) {
 				sql += "p_kind1 = p_kind1 + 1 WHERE p_kind1 >= ?";
 				sql += " ORDER BY p_kind1 desc";
 
 				pst = conn.prepareStatement(sql);
 				pst.setInt(1, k1);
 				rs = pst.executeUpdate();
-			} else if (num==2) {
+			} else if (num == 2) {
 				sql += "p_kind2 = p_kind2 + 1 WHERE p_kind1 like ? and p_kind2 >= ?";
 				sql += " ORDER BY p_kind1 desc, p_kind2 desc";
 
@@ -259,7 +259,7 @@ public class P_KeyPoint_DAO {
 				pst.setInt(1, k1);
 				pst.setInt(2, k2);
 				rs = pst.executeUpdate();
-			} else if (num==3) {
+			} else if (num == 3) {
 				sql += "p_kind2 = p_kind2 + 1 WHERE p_kind1 like ? and p_kind2 like ? and p_kind3 >= ?";
 				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc;";
 
@@ -268,7 +268,7 @@ public class P_KeyPoint_DAO {
 				pst.setInt(2, k2);
 				pst.setInt(3, k3);
 				rs = pst.executeUpdate();
-			} else if (num==4) {
+			} else if (num == 4) {
 				sql += "p_kind2 = p_kind2 + 1 WHERE p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 >= ?";
 				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc;";
 
@@ -496,7 +496,7 @@ public class P_KeyPoint_DAO {
 			} else if ((k1 != 0) && (k2 != 0) && (k3 != 0) && (k4 != 0) && (k5 == 0)) {
 				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ?";
 				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc;";
-				
+
 				pst = conn.prepareStatement(sql);
 				pst.setInt(1, k1);
 				pst.setInt(2, k2);
@@ -506,7 +506,7 @@ public class P_KeyPoint_DAO {
 			} else {
 				sql += "p_kind1 like ? and p_kind2 like ? and p_kind3 like ? and p_kind4 like ? and p_kind5 like ?";
 				sql += " ORDER BY p_kind1 desc, p_kind2 desc, p_kind3 desc, p_kind4 desc, p_kind5;";
-				
+
 				pst = conn.prepareStatement(sql);
 				pst.setInt(1, k1);
 				pst.setInt(2, k2);

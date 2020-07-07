@@ -1,0 +1,169 @@
+package DAO;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+import DTO.M_Info_DTO;
+
+public class M_Info_DAO {
+	private static final String DRIVER = "org.mariadb.jdbc.Driver";
+	private static final String URL = "jdbc:mariadb://localhost:3306/ThePoint";
+	private static final String USER = "root";
+	private static final String PASS = "hyun5292";
+
+	// DB연결 메서드
+	public Connection getConn() {
+		Connection conn = null;
+		try {
+			Class.forName(DRIVER);
+			conn = DriverManager.getConnection(URL, USER, PASS);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return conn;
+	}
+
+	// 현재 접속자의 이전 회원데이터 확인
+	public M_Info_DTO CheckInfo() {
+		M_Info_DTO result = new M_Info_DTO();
+		String sql = "";
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConn();
+			sql = "select * from M_Info";
+
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+
+			if (rs.next()) {
+				result.setM_Name(rs.getString("m_Name"));
+				result.setM_Goal(rs.getString("m_Goal"));
+				result.setM_LKind(rs.getString("m_LKind"));
+				result.setM_SKind(rs.getString("m_SKind"));
+				result.setM_StartYear(rs.getInt("m_StartYear"));
+				result.setM_StartMonth(rs.getInt("m_StartMonth"));
+				result.setM_StartDate(rs.getInt("m_StartDate"));
+				result.setM_EndYear(rs.getInt("m_EndYear"));
+				result.setM_EndMonth(rs.getInt("m_EndMonth"));
+				result.setM_EndDate(rs.getInt("m_EndDate"));
+				result.setM_Determin(rs.getString("m_Determin"));
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!stmt.isClosed())
+					stmt.close();
+				if (!rs.isClosed())
+					rs.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+
+		return result;
+	}
+
+	// 새로운 회원 정보 입력
+	public boolean InsertInfo(M_Info_DTO dto) {
+		boolean result = false;
+		String sql = "";
+		Connection conn = null;
+		PreparedStatement pst = null;
+		int rs = 0;
+
+		try {
+			conn = getConn();
+			sql = "insert into m_info VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, dto.getM_Name());
+			pst.setString(2, dto.getM_Goal());
+			pst.setString(3, dto.getM_LKind());
+			pst.setString(4, dto.getM_SKind());
+			pst.setInt(5, dto.getM_StartYear());
+			pst.setInt(6, dto.getM_StartMonth());
+			pst.setInt(7, dto.getM_StartDate());
+			pst.setInt(8, dto.getM_EndYear());
+			pst.setInt(9, dto.getM_EndMonth());
+			pst.setInt(10, dto.getM_EndDate());
+			pst.setString(11, dto.getM_Determin());
+			rs = pst.executeUpdate();
+
+			if (rs > 0) {
+				result = true;
+			} else {
+				result = false;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!pst.isClosed())
+					pst.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+
+		return result;
+	}
+
+	// 회원 정보 수정
+	public boolean ModifyInfo(M_Info_DTO dto) {
+		boolean result = false;
+		String sql = "";
+		Connection conn = null;
+		PreparedStatement pst = null;
+		int rs = 0;
+
+		try {
+			conn = getConn();
+			sql = "UPDATE M_INFO SET M_GOAL = ?, M_LKIND = ?, M_SKIND = ?, M_STARTYEAR = ?, M_STARTMONTH = ?, " + 
+					"M_STARTDATE = ?, M_ENDYEAR = ?, M_ENDMONTH = ?, M_ENDDATE = ?, M_DETERMIN = ? WHERE M_NAME LIKE ?";
+
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, dto.getM_Goal());
+			pst.setString(2, dto.getM_LKind());
+			pst.setString(3, dto.getM_SKind());
+			pst.setInt(4, dto.getM_StartYear());
+			pst.setInt(5, dto.getM_StartMonth());
+			pst.setInt(6, dto.getM_StartDate());
+			pst.setInt(7, dto.getM_EndYear());
+			pst.setInt(8, dto.getM_EndMonth());
+			pst.setInt(9, dto.getM_EndDate());
+			pst.setString(10, dto.getM_Determin());
+			pst.setString(11, dto.getM_Name());
+			rs = pst.executeUpdate();
+			
+			if (rs > 0) {
+				result = true;
+			} else {
+				result = false;
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!pst.isClosed())
+					pst.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+
+		return result;
+	}
+}

@@ -92,4 +92,32 @@ public class Calendar_DAO {
 			}
 		}
 	}
+	
+	//전체 초기화
+	public void RemoveAll() {
+		String sql = "";
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConn();
+			sql = "UPDATE calendar SET c_State = 'N';";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (Exception e) {
+			System.out.println(e);
+		} finally {
+			try {
+				if (!conn.isClosed())
+					conn.close();
+				if (!stmt.isClosed())
+					stmt.close();
+				if (!rs.isClosed())
+					rs.close();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
 }
